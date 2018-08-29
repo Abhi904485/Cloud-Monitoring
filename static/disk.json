@@ -1,0 +1,38 @@
+[
+    {
+        "C:\\": {
+            "disk_filesystem_type": "NTFS",
+            "disk_free_space": "71.299817472 GB",
+            "disk_mount_point": "C:\\",
+            "disk_mount_type": "rw,fixed",
+            "disk_total_space": "160.635777024 GB",
+            "disk_usage_percent": "55.6 %",
+            "disk_used_space": "89.335959552 GB",
+            "drive_name": "C:\\"
+        }
+    },
+    {
+        "D:\\": {
+            "disk_filesystem_type": "NTFS",
+            "disk_free_space": "156.04471808 GB",
+            "disk_mount_point": "D:\\",
+            "disk_mount_type": "rw,fixed",
+            "disk_total_space": "189.158912 GB",
+            "disk_usage_percent": "17.5 %",
+            "disk_used_space": "33.11419392 GB",
+            "drive_name": "D:\\"
+        }
+    },
+    {
+        "F:\\": {
+            "disk_filesystem_type": "NTFS",
+            "disk_free_space": "73.323311104 GB",
+            "disk_mount_point": "F:\\",
+            "disk_mount_type": "rw,fixed",
+            "disk_total_space": "161.470214144 GB",
+            "disk_usage_percent": "54.6 %",
+            "disk_used_space": "88.14690304 GB",
+            "drive_name": "F:\\"
+        }
+    }
+]

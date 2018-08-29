@@ -1,3 +1,4 @@
+status_dict_list = []
 status_dict = {}
 
 
@@ -13,13 +14,12 @@ def system_status():
     memory_percent = psutil.virtual_memory()[2]
     disk_percent = psutil.disk_usage('/')[3]
     boot_time = datetime.datetime.fromtimestamp(psutil.boot_time())
-    status_dict['running_since'] = boot_time.strftime("%A %d. %B %Y")
-    status_dict['os_version'] = os, version
-    status_dict['name_cpu_cores'] = name, cores
-    status_dict['disk_percent'] = disk_percent
-    status_dict['cpu_percent'] = cpu_percent
-    status_dict['memory_percent'] = memory_percent
+    status_dict['Running Since'] = boot_time.strftime("%A %d. %B %Y")
+    status_dict['OS Version'] = version
+    status_dict['Cpu Cores'] = cores
+    status_dict['Disk Percent'] = str(disk_percent) + " %"
+    status_dict['Cpu Percent'] = str(cpu_percent) + " %"
+    status_dict['Memory Percent'] = str(memory_percent) + " %"
     return status_dict
-
 
 # print(system_status())

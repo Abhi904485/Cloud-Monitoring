@@ -19,7 +19,7 @@ def get_network():
         ifnet['errout'] = data.errout
         ifnet['dropin'] = data.dropin
         ifnet['dropout'] = data.dropout
-        networks.append({ifnet['iface']: ifnet})
+        networks.append(ifnet)
     return networks
 
 # print(get_network())

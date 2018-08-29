@@ -18,6 +18,12 @@
         <title>RAR</title>
     {% endif %}
 
+
+    <style type="text/css">
+        .card-body-override {
+            padding: 0.1rem 1rem 0.1rem 1rem;
+        }
+    </style>
 </head>
 <body>
 <header class="site-header">
@@ -45,7 +51,7 @@
 
 <main role="main" class="container">
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-12">
             {% with messages = get_flashed_messages(with_categories=true) %}
                 {% if messages %}
                     {% for category, message in messages %}
@@ -57,75 +63,240 @@
             {% endwith %}
             {% block content %}
 
- <div id="accordion">
-    <div class="card">
-      <div class="card-header">
-        <a class="card-link" data-toggle="collapse" href="#collapseOne">
-          Network details
-        </a>
-      </div>
-      <div id="collapseOne" class="collapse show" data-parent="#accordion">
-        <div class="card-body">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        </div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-header">
-        <a class="collapsed card-link" data-toggle="collapse" href="#collapseTwo">
-        Operating system details
-      </a>
-      </div>
-      <div id="collapseTwo" class="collapse" data-parent="#accordion">
-        <div class="card-body">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        </div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-header">
-        <a class="collapsed card-link" data-toggle="collapse" href="#collapseThree">
-          Memory and RAM details
-        </a>
-      </div>
-      <div id="collapseThree" class="collapse" data-parent="#accordion">
-        <div class="card-body">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        </div>
-      </div>
-    </div>
-  </div>
- </div>
-
-            
-            <!--
-         -----------------------------------------------------------------------------------------
-                {% for computer in computers %}
-                    <article class="media content-section">
-                        <div class="media-body">
-                            <div class="article-metadata">
-                                <a class="mr-2" href="{{ url_for('details') }}">{{ computer.ipaddress }}</a>
-             --------------                   
-              <small class="text-muted">{{ computer.date_last_accessed }}</small>
-            ----------
-                            </div>
-                            <p class="article-content">{{ computer.processes }}</p>
+                <div id="accordion">
+                    {#                this is for ip details#}
+                    <div class="card">
+                        <div class="card-header">
+                            <a class="card-link" data-toggle="collapse" href="#collapseOne">
+                                IP Address Details
+                            </a>
                         </div>
-                    </article>
-                {% endfor %}
-                ------------------------------------------------------------------------------->
+                        <div id="collapseOne" class="collapse" data-parent="#accordion">
+                            <div class="card-body">
+                                {% for k in ip_details %}
+                                    <div class="row">
+                                        <div class="col-sm-4"
+                                             style="background-color: #cbd5db;text-align:left;font-size: medium;">{{ k }}</div>
+                                        <div class="col-sm-8"
+                                             style="text-align:justify-all;font-size: large; background-color: #e3e3e3">{{ ip_details[k] }}</div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    {#                this is for system#}
+                    <div class="card">
+                        <div class="card-header">
+                            <a class="collapsed card-link" data-toggle="collapse" href="#collapseTwo">
+                                System Details
+                            </a>
+                        </div>
+                        <div id="collapseTwo" class="collapse" data-parent="#accordion">
+                            <div class="card-body">
+                                {% for k in system_details %}
+                                    <div class="row">
+                                        <div class="col-sm-4"
+                                             style="background-color: #cbd5db;text-align:left;font-size: medium;">{{ k }}</div>
+                                        <div class="col-sm-8"
+                                             style="text-align:justify-all;font-size: large; background-color: #e3e3e3">{{ system_details[k] }}</div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    {#                this is for disk#}
+                    <div class="card">
+                        <div class="card-header">
+                            <a class="collapsed card-link" data-toggle="collapse" href="#collapseThree">
+                                Disk Details
+                            </a>
+                        </div>
+                        <div id="collapseThree" class="collapse" data-parent="#accordion">
+
+                            <div class="card-body">
+
+                                <div class="card">
+                                    {% for k in disk_details %}
+                                        <div class="card-header">
+                                            <a class="collapsed card-link" data-toggle="collapse"
+                                               href="#collapseThreeOne">
+                                                {{ k['drive_name'] }}
+                                            </a>
+                                        </div>
+                                        {% for i in k %}
+                                            <div class="card-body card-body-override">
+                                                <div class="row">
+                                                    <div class="col-sm-4"
+                                                         style="background-color: #cbd5db;text-align:left;font-size: medium;">{{ i }}</div>
+                                                    <div class="col-sm-8"
+                                                         style="text-align:justify-all;font-size: large; background-color: #e3e3e3">{{ k[i] }}</div>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {#                this is for ram#}
+                    <div class="card">
+                        <div class="card-header">
+                            <a class="collapsed card-link" data-toggle="collapse" href="#collapseFour">
+                                RAM details
+                            </a>
+                        </div>
+                        <div id="collapseFour" class="collapse" data-parent="#accordion">
+                            <div class="card-body">
+                                {% for k in memory_details %}
+                                    <div class="row">
+                                        <div class="col-sm-4"
+                                             style="background-color: #cbd5db;text-align:left;font-size: medium;">{{ k }}</div>
+                                        <div class="col-sm-8"
+                                             style="text-align:justify-all;font-size: large; background-color: #e3e3e3">{{ memory_details[k] }}</div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    {#                this is for process#}
+                    <div class="card">
+                        <div class="card-header">
+                            <a class="collapsed card-link" data-toggle="collapse" href="#collapseFive">
+                                Process Details
+                            </a>
+                        </div>
+                        <div id="collapseFive" class="collapse" data-parent="#accordion">
+                            <div class="card-body">
+                                <div class="card">
+                                    {% for k in process_details %}
+                                        <div class="card-header">
+                                            <a class="collapsed card-link" data-toggle="collapse"
+                                               href="#collapseThreeOne">
+                                                {{ k['process_name'] }}
+                                            </a>
+                                        </div>
+                                        {% for i in k %}
+                                            <div class="card-body card-body-override">
+                                                <div class="row">
+                                                    <div class="col-sm-4"
+                                                         style="background-color: #cbd5db;text-align:left;font-size: medium;">{{ i }}</div>
+                                                    <div class="col-sm-8"
+                                                         style="text-align:justify-all;font-size: large; background-color: #e3e3e3">{{ k[i] }}</div>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                        <div class="col-md-12" style="margin-top: 5px; margin-bottom: 3px;">
+                                            <div class="form-group">
+                                                <div class="form-group">
+                                                    <input type="submit" class="btn btn-outline-danger"
+                                                           value="Kill Process"
+                                                           name="{{ k['process_id'] }}"
+                                                           onclick="location.href = '/kill_process';">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {#                this is for service#}
+                    <div class="card">
+                        <div class="card-header">
+                            <a class="collapsed card-link" data-toggle="collapse" href="#collapseSix">
+                                Service Details
+                            </a>
+                        </div>
+                        <div id="collapseSix" class="collapse" data-parent="#accordion">
+                            <div class="card-body">
+                                <div class="card">
+                                    {% for k in service_details %}
+                                        <div class="card-header">
+                                            <a class="collapsed card-link" data-toggle="collapse"
+                                               href="#collapseThreeOne">
+                                                {{ k['name'] }}
+                                            </a>
+                                        </div>
+                                        {% for i in k %}
+                                            <div class="card-body card-body-override">
+                                                <div class="row">
+                                                    <div class="col-sm-4"
+                                                         style="background-color: #cbd5db;text-align:left;font-size: medium;">{{ i }}</div>
+                                                    <div class="col-sm-8"
+                                                         style="text-align:justify-all;font-size: large; background-color: #e3e3e3">{{ k[i] }}</div>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+
+                                        <div class="col-md-12" style="margin-top: 5px; margin-bottom: 3px;">
+                                            <div class="form-group">
+                                                <div class="form-group">
+                                                    <input type="button" class="btn btn-outline-info"
+                                                           value="Start Service"
+                                                           onclick="">
+                                                    <input type="button" class="btn btn-outline-danger"
+                                                           value="Stop Service"
+                                                           onclick="">
+                                                    <input type="button" class="btn btn-warning"
+                                                           value="Restart Service"
+                                                           onclick="">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    {% endfor %}
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {#                this is for network#}
+                    <div class="card">
+                        <div class="card-header">
+                            <a class="collapsed card-link" data-toggle="collapse" href="#collapseSeven">
+                                Network Details
+                            </a>
+                        </div>
+                        <div id="collapseSeven" class="collapse" data-parent="#accordion">
+                            <div class="card-body">
+                                {% for k in network_details %}
+                                    <div class="card-header">
+                                        <a class="collapsed card-link" data-toggle="collapse"
+                                           href="#collapseThreeOne">
+                                            {{ k['iface'] }}
+                                        </a>
+                                    </div>
+                                    {% for i in k %}
+                                        <div class="card-body card-body-override">
+                                            <div class="row">
+                                                <div class="col-sm-4"
+                                                     style="background-color: #cbd5db;text-align:left;font-size: medium;">{{ i }}</div>
+                                                <div class="col-sm-8"
+                                                     style="text-align:justify-all;font-size: large; background-color: #e3e3e3">{{ k[i] }}</div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
             {% endblock content %}
     </div>
 
-  
-         <div class="col-md-4">
-           <div class="form-group">
-                <legend class="border-bottom mb-4">Remote access this machine</legend>
-                <div class="form-group">
-                	<input type="button" class="btn btn-outline-info" value="Access now" onclick="location.href = '/rdp';">
-                </div>
+
+    <div class="col-md-12">
+        <div class="form-group">
+            <legend class="border-bottom mb-4">Remote access this machine</legend>
+            <div class="form-group">
+                <input type="button" class="btn btn-outline-info" value="Access now"
+                       onclick="location.href = '/rdp';">
             </div>
         </div>
+    </div>
 
 </main>
 
@@ -143,15 +314,6 @@
         crossorigin="anonymous"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
 
 
 <!--

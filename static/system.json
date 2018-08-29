@@ -1,0 +1,14 @@
+{
+    "cpu_percent": 28.2,
+    "disk_percent": 17.5,
+    "memory_percent": 48.6,
+    "name_cpu_cores": [
+        "IND-L-abkumarsingh",
+        4
+    ],
+    "os_version": [
+        "Windows",
+        "10"
+    ],
+    "running_since": "Wednesday 15. August 2018"
+}

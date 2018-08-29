@@ -1,0 +1,31 @@
+[
+  {
+    "Autoconfiguration Enabled": "Yes",
+    "Connection-specific DNS Suffix": "blr.novell.com",
+    "DHCP Enabled": "Yes",
+    "DHCP Server": "164.99.201.201",
+    "DHCPv6 Client DUID": "00-01-00-01-22-98-48-76-50-7B-9D-1A-DA-37",
+    "DHCPv6 IAID": "89160605",
+    "DNS Servers": "164.99.201.201",
+    "DNS Suffix Search List": "microfocus.com",
+    "Default Gateway": "164.99.46.254",
+    "Description": "Intel(R) Dual Band Wireless-AC 7265",
+    "Ethernet adapter Ethernet": "",
+    "Host Name": "IND-L-abkumarsingh",
+    "IP Routing Enabled": "No",
+    "IPv4 Address": "164.99.46.27(Preferred)",
+    "Lease Expires": "Thursday, August 23, 2018 1",
+    "Lease Obtained": "Thursday, August 23, 2018 12",
+    "Link-local IPv6 Address": "fe80",
+    "Media State": "Media disconnected",
+    "NetBIOS over Tcpip": "Enabled",
+    "Node Type": "Hybrid",
+    "Physical Address": "DE-44-FA-19-C4-E7",
+    "Primary Dns Suffix": "microfocus.com",
+    "Subnet Mask": "255.255.255.0",
+    "WINS Proxy Enabled": "No",
+    "Wireless LAN adapter Local Area Connection* 3": "",
+    "Wireless LAN adapter Local Area Connection* 5": "",
+    "Wireless LAN adapter Wi-Fi": ""
+  }
+]
