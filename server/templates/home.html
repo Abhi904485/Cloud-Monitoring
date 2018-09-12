@@ -1,0 +1,91 @@
+{% extends "layout.html" %}
+{% block content %}
+    <form name="myform" action="{{ url_for('action') }}" method="post">
+        <div class="card">
+            <div class="card-header">
+                <a class="collapsed card-link" data-toggle="collapse" href="#collapseSeven">
+                    Devices
+                </a>
+
+                {#                            <label>#}
+                {#                                <select style="margin-left: 2px" name="process">#}
+                {#                                    <option>Choose a process to kill</option>#}
+                {#                                    <option value="notepad.exe">notepad.exe</option>#}
+                {#                                    <option value="notepad++.exe">notepad++.exe</option>#}
+                {#                                    <option value="firefox.exe">firefox.exe</option>#}
+                {#                                    <option value="vlc.exe">vlc.exe</option>#}
+                {#                                </select>#}
+                {#                            </label>#}
+
+                <label style="margin-left: 20px">
+                    Kill process <input type="text" name="kill_process_exe_path"
+                                        placeholder="Enter process name "/>
+                </label>
+                <label style="margin-left: 20px">
+                    Start process <input type="text" name="start_process_exe_path"
+                                         placeholder="Program installation path "/>
+                </label>
+                <label style="margin-left: 20px">
+                    Manage Services <input type="text" name="manage_service"
+                                           placeholder="service name "/>
+                </label>
+                <input style="margin-left: 2px" type="submit"/>
+            </div>
+
+            <div id="collapseSeven" class="collapse show" data-parent="#accordion">
+                <div class="card-body">
+
+
+                    <div class="card-body card-body-override">
+                        <div class="row">
+                            <div class="col-sm-1"
+                                 style="background-color: #5f788a;text-align:left;font-size: medium; font-weight: bold">
+                                <input type="checkbox" id="checker"/>
+                            </div>
+                            <div class="col-sm-2"
+                                 style="background-color: #5f788a;text-align:left;font-size: medium; font-weight: bold">
+                                HOSTNAME
+                            </div>
+                            <div class="col-sm-2"
+                                 style="text-align:justify-all;font-size: medium; background-color: #5f788a; font-weight: bold">
+                                OS
+                            </div>
+                            <div class="col-sm-3"
+                                 style="text-align:justify-all;font-size: medium; background-color: #5f788a; font-weight: bold">
+                                GUID
+                            </div>
+                            <div class="col-sm-4"
+                                 style="text-align:justify-all;font-size: medium; background-color: #5f788a; font-weight: bold">
+                                Running Since
+                            </div>
+                        </div>
+                        {% for k in computers %}
+
+                            <div class="row">
+                                <div class="col-sm-1" style="background-color: #cbd5db;"><input
+                                        type="checkbox" name="check_list" value="{{ k['ip'] }}"
+                                />
+                                </div>
+                                <div class="col-sm-2"
+                                     style="background-color: #cbd5db;text-align:left;font-size: medium;">
+                                    <a href="{{ url_for('details', ip = k['ip'] , guid = k['guid'], username = k['username'], password = k['password'], port = k['port'],hostname=k['hostname']) }}">{{ k.hostname }}</a>
+
+                                </div>
+                                <div class="col-sm-2"
+                                     style="text-align:justify-all;font-size: large; background-color: #e3e3e3">{{ k.os }}</div>
+                                <div class="col-sm-3"
+                                     style="text-align:justify-all;font-size: large; background-color: #e3e3e3">{{ k.guid }}</div>
+                                <div class="col-sm-4"
+                                     style="text-align:justify-all;font-size: large; background-color: #e3e3e3">{{ k.running }}</div>
+                            </div>
+                        {% endfor %}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </form>
+{% endblock content %}
+
+</body>
+</html>

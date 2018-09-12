@@ -1,0 +1,23 @@
+[
+  {
+    "ipaddress": "10.71.65.201",
+    "username": "user",
+    "password": "novell@123",
+    "os": "Win 10",
+    "guid": "4562319078"
+  },
+  {
+    "ipaddress": "10.71.65.203",
+    "username": "user",
+    "password": "novell@123",
+    "os": "Win 7",
+    "guid": "7843679032"
+  },
+  {
+    "ipaddress": "10.71.67.204",
+    "username": "user",
+    "password": "novell@123",
+    "os": "Win 2k12",
+    "guid": "6723409856"
+  }
+]
