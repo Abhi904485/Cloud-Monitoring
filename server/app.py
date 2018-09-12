@@ -1,3 +1,5 @@
+import sys
+sys.path = ['..']+sys.path
 import json
 import os
 from flask_sqlalchemy import SQLAlchemy
@@ -193,7 +195,7 @@ def restart_service(ip, service_name, hostname):
 @app.route('/rdp/<ip>/<username>/<password>/<port>', methods=['GET', 'POST'])
 def rdp(ip, username, password, port):
     os.system(
-        r"C:\Python27\python.exe C:\Users\Administrator\Desktop\server\webservice_helper_method\my_rdp.py -u " + username + " -p " + password + " " + ip + ":" + port)
+        r"C:\Python27\python.exe"+os.getcwd()+os.sep+"my_rdp.py -u " + username + " -p " + password + " " + ip + ":" + port)
     return redirect(url_for('home'))
 
 

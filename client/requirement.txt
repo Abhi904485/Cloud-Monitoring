@@ -1,0 +1,4 @@
+psutil
+flask
+flask_wtf
+flask_debugtoolbar

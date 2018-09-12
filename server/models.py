@@ -1,3 +1,5 @@
+import sys
+sys.path = ['..']+sys.path
 from flask_login import UserMixin
 
 from app import db
