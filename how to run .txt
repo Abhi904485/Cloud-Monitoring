@@ -1,0 +1,19 @@
+Open Cmd as Admin and went into client directory then run
+
+#################Client run :#####################
+First way :
+C:\Users\Abhishek\Desktop\Cloud-Monitoring\client>py -3 app.py
+
+Second way :(As A Package Run )
+C:\Users\Abhishek\Desktop\Cloud-Monitoring\client>py -3 flask run --host=0.0.0.0 --port=4200
+
+in client i am giving my server ip hardcoded please change According to your self
+
+
+
+#################Server run########################
+Only run as a Package
+
+C:\Users\Abhishek\Desktop\Cloud-Monitoring\server>py -3 flask run --host=0.0.0.0 --port=80
+
+

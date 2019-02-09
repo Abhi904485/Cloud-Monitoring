@@ -1,8 +1,9 @@
 import sys
-sys.path = ['..']+sys.path
+
+sys.path = ['..'] + sys.path
 import os
 import subprocess
-from flask import Flask, jsonify, render_template, flash, redirect, url_for, request
+from flask import Flask, jsonify, redirect, url_for, request
 from webservice_helper_method import ip_status, disk_status, all_process_status, network_usage, system_status, \
     memory_status, service_status
 import json
@@ -13,6 +14,7 @@ session = Session()
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '5791628bb0b13ce0c676dfde280ba245'
 app.config['TEMPLATES_AUTO_RELOAD'] = True
+
 
 @app.route('/get_ip_details', methods=['GET'])
 def get_ip_details():
@@ -100,7 +102,7 @@ def restart_service():
 
 @app.route('/rdp/<ip>/<username>/<password>/<port>', methods=['GET', 'POST'])
 def rdp(ip, username, password, port):
-    os.system(r"py -2 "+os.getcwd+os.sep+"my_rdp.py -u " + username + " -p " + password + " " + ip + ":" + port)
+    os.system(r"py -2 " + os.getcwd + os.sep + "my_rdp.py -u " + username + " -p " + password + " " + ip + ":" + port)
     return redirect(url_for('home'))
 
 
@@ -121,7 +123,7 @@ def start_process():
     process_name = request.json['command']
     modified_string = '"' + process_name + '"'
     try:
-        if os.startfile(modified_string) == None:
+        if os.startfile(modified_string) is None:
             return jsonify({"status": "ok"})
     except:
         return jsonify({"status": "error"})
@@ -144,7 +146,7 @@ def start_or_stop_service():
 def push_agent():
     try:
         agent_json_data = startup.main()
-        push_agent_response = session.post("http://10.71.64.222/push_agent", json=agent_json_data)
+        push_agent_response = session.post("http://192.168.0.100/push_agent", json=agent_json_data)
         json_response = json.loads(push_agent_response.content)
         if json_response['Status'] == "Had Done":
             print(json_response['Message'])
@@ -152,7 +154,7 @@ def push_agent():
             print(json_response['Message'])
     except:
         agent_json_data = startup.main()
-        push_agent_response = session.post("http://10.71.64.222/push_agent", json=agent_json_data)
+        push_agent_response = session.post("http://192.168.0.100/push_agent", json=agent_json_data)
         json_response = json.loads(push_agent_response.content)
         if json_response['Status'] == "Had Done":
             print(json_response['Message'])
@@ -166,5 +168,5 @@ def hello():
 
 
 if __name__ == '__main__':
-    # push_agent()
+    push_agent()
     app.run(host="0.0.0.0", port=4200, debug=True)
